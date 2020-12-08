@@ -1,3 +1,9 @@
+/*
+Author: Iksang Yoo
+Team: Everyday Survey
+Course: COMP229 - Fall 2020
+Purpose: Team Project - Survey Site
+*/ 
 let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
@@ -15,21 +21,6 @@ module.exports.displayHomePage = (req, res, next) => {
     res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName : ''});
 }
 
-module.exports.displayAboutPage = (req, res, next) => {
-    res.render('index', { title: 'About', displayName: req.user ? req.user.displayName : ''});
-}
-
-module.exports.displayProductsPage = (req, res, next) => {
-    res.render('index', { title: 'Products', displayName: req.user ? req.user.displayName : ''});
-}
-
-module.exports.displayServicesPage = (req, res, next) => {
-    res.render('index', { title: 'Services', displayName: req.user ? req.user.displayName : ''});
-}
-
-module.exports.displayContactPage = (req, res, next) => {
-    res.render('index', { title: 'Contact', displayName: req.user ? req.user.displayName : ''});
-}
 
 module.exports.displayLoginPage = (req, res, next) => {
     // check if the user is already logged in
@@ -90,7 +81,7 @@ module.exports.processLoginPage = (req, res, next) => {
             }, token: authToken});
             */
 
-            return res.redirect('/book-list');
+            return res.redirect('/survey-list');
         });
     })(req, res, next);
 }
@@ -151,7 +142,7 @@ module.exports.processRegisterPage = (req, res, next) => {
             */
 
             return passport.authenticate('local')(req, res, () => {
-                res.redirect('/book-list')
+                res.redirect('/survey-list')
             });
         }
     });
